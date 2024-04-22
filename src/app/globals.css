@@ -1,0 +1,33 @@
+body {
+  background-color: var(--mantine-color-dark-7);
+  color: var(--mantine-color-white);
+  height: 100vh;
+}
+
+a {
+  text-decoration: none;
+}
+
+.mantine-Carousel-controls {
+  padding: 0px !important;
+  top: unset !important;
+  position: absolute !important;
+}
+
+.mantine-Carousel-control {
+  background-color: transparent !important;
+  color: var(--mantine-color-gray-3) !important;
+  font-weight: 600 !important;
+  border: none !important;
+  font-size: larger !important;
+}
+
+.mantine-Carousel-root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mantine-Carousel-viewport {
+  width: 90% !important;
+}

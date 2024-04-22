@@ -1,0 +1,46 @@
+.header {
+  height: rem(56px);
+  background-color: var(--mantine-color-dark-7);
+  border-bottom: rem(1px) solid
+    light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4));
+}
+
+.inner {
+  width: 100%;
+  height: rem(56px);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.link {
+  display: block;
+  line-height: 1;
+  padding: rem(8px) rem(12px);
+  border-radius: var(--mantine-radius-sm);
+  text-decoration: none;
+  color: var(--mantine-color-gray-filled);
+  font-size: var(--mantine-font-size-sm);
+  font-weight: 500;
+
+  @mixin hover {
+    color: var(--mantine-color-green-5);
+  }
+
+  [data-mantine-color-scheme] &[data-active] {
+    color: var(--mantine-color-white);
+  }
+}
+
+.login {
+  padding: 0px 10px;
+  background-color: var(--mantine-color-gray-8);
+  color: var(--mantine-color-white);
+  font-weight: 400;
+  border: none;
+
+  @mixin hover {
+    background-color: var(--mantine-color-gray-8);
+    color: var(--mantine-color-white);
+  }
+}
