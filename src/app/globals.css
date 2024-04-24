@@ -12,6 +12,7 @@ a {
   padding: 0px !important;
   top: unset !important;
   position: absolute !important;
+  margin: 0px 14px !important;
 }
 
 .mantine-Carousel-control {
@@ -26,8 +27,14 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 16px 13px 40px 13px;
 }
 
 .mantine-Carousel-viewport {
   width: 90% !important;
+}
+
+.mantine-HoverCard-dropdown {
+  padding: 0px;
+  border: none;
 }

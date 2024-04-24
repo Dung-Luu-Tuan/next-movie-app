@@ -1,4 +1,4 @@
 export interface MoviesListProps {
-  title: string;
+  name: string;
   list: any;
 }
