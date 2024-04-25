@@ -1,20 +1,25 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
-import { Card, Image, Text } from '@mantine/core';
+import { Flex, Card, Image, Text } from '@mantine/core';
 import classes from "./CardHover.module.css";
 
-const CardHover = ({ slideRect }: any) => {
-    console.log('slideReat', slideRect)
+const CardHover = ({ slideRect, detail }: any) => {
+    const [slideData, setSlideData] = useState({ ...slideRect })
+    const [movieDetail, setMovieDetail] = useState(detail);
+
     useEffect(() => {
-        // Thêm class "body-portal" vào body để tạo một điểm gắn kết cho portal
+        fetch(`https://phimapi.com/phim/${detail.slug}`)
+            .then((res) => res.json())
+            .then((data) => setMovieDetail(data.movie));
+        setSlideData(slideRect)
+        // Add the "body-portal" class to the body to create a point of attachment for the portal
         document.body.classList.add("body-portal");
         return () => {
-            // Xóa class "body-portal" khỏi body khi component bị unmount
+            // Remove the "body-portal" class from the body when the component is unmounted
             document.body.classList.remove("body-portal");
         };
-    }, [slideRect]);
-
-    console.log('slideRect', slideRect);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     const portalContainer = document.querySelector(".body-portal");
     if (!portalContainer) return null;
@@ -27,29 +32,51 @@ const CardHover = ({ slideRect }: any) => {
             className={classes.card}
             style={{
                 position: 'absolute',
-                top: slideRect?.top - 20 || 0,
-                left: slideRect?.left || 0,
-                width: slideRect?.width + 50 || 0,
-                height: slideRect?.height + 40 || 0,
+                top: slideData?.top - 20 || 0,
+                left: slideData?.left || 0,
+                width: slideData?.width + 50 || 0,
+                height: slideData?.height + 40 || 0,
                 marginLeft: -25,
                 zIndex: 999
             }}
         >
-            <Card.Section>
-                <Image
-                    src="https://images.unsplash.com/photo-1579227114347-15d08fc37cae?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80"
-                    h={160}
-                    alt="No way!"
-                />
-            </Card.Section>
+            <Flex direction="column">
+                <Card.Section>
+                    <Image
+                        src={movieDetail.thumb_url}
+                        h={120}
+                        alt="img"
+                    />
+                </Card.Section>
 
-            <Text fw={500} size="lg" mt="md">
-                You&apos;ve won a million dollars in cash!
-            </Text>
+                <Flex direction="column" justify="flex-start" >
+                    <Text className={classes.name}>
+                        {movieDetail.name}
+                    </Text>
 
-            <Text mt="xs" c="dimmed" size="sm">
-                Please click anywhere on this card to claim your reward, this is not a fraud, trust us
-            </Text>
+                    <Text className={classes.row}>
+                        {movieDetail.year}
+                    </Text>
+
+                    <Text className={classes.row}>
+                        {movieDetail.category.slice(0, 2).map((item: any, index: any) => (
+                            <span key={index} className={classes.category}>{item.name}</span>
+                        ))}
+                    </Text>
+
+                    <Text className={classes.row}>
+                        Đạo diễn: {movieDetail.director?.join(', ')}
+                    </Text>
+
+                    <Text className={`${classes.row} ${classes.content}`}>
+                        {movieDetail.content}
+                    </Text>
+
+                    <Text className={classes.continue}>
+                        Xem thêm
+                    </Text>
+                </Flex>
+            </Flex>
         </Card>,
         portalContainer
     );

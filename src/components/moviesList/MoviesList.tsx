@@ -35,7 +35,7 @@ const MoviesList = ({ name, list }: MoviesListProps) => {
         sizes="(max-width: 768px) 100vw, 33vw"
       />
       <p className={classes.name}>{item.name}</p>
-      {hoveredIndex === index && <CardHover slideRect={slideRect}/>}
+      {hoveredIndex === index && <CardHover slideRect={slideRect} detail={item}/>}
     </Carousel.Slide>
   ));
 
