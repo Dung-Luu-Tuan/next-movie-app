@@ -1,6 +1,5 @@
 "use client";
-
-import MoviesList from "@/components/moviesList/MoviesList";
+import MoviesList from "@/components/movies/MoviesList";
 import { useEffect, useState } from "react";
 
 const Home = () => {

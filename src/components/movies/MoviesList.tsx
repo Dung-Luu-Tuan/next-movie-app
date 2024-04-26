@@ -1,3 +1,4 @@
+"use client";
 import { MoviesListProps } from "@/types";
 import { Carousel } from "@mantine/carousel";
 import { Container, rem, HoverCard } from "@mantine/core";
@@ -14,14 +15,14 @@ const MoviesList = ({ name, list }: MoviesListProps) => {
   const handleMouseEnter = (index: any) => {
     const slideElement = document.getElementById(`carousel-slide-${index}`);
     if (slideElement) {
-      const rect = slideElement.getBoundingClientRect(); // Lấy thông tin về kích thước và vị trí của phần tử
+      const rect = slideElement.getBoundingClientRect(); // Get information about the size and position of the element
       setSlideRect(rect);
     }
-    setHoveredIndex(index); // Khi con trỏ chuột vào một Slide, set hoveredIndex là index của Slide đó
+    setHoveredIndex(index); // When the mouse pointer enters a Slide, set hoveredIndex to the index of that Slide
   };
 
   const handleMouseLeave = () => {
-    setHoveredIndex(null); // Khi con trỏ chuột rời khỏi Slide, set hoveredIndex là null
+    setHoveredIndex(null); // When the mouse pointer leaves the Slide, set hoveredIndex to null
   };
   
   const slides = list.map((item: any, index: any) => (
@@ -35,12 +36,13 @@ const MoviesList = ({ name, list }: MoviesListProps) => {
         sizes="(max-width: 768px) 100vw, 33vw"
       />
       <p className={classes.name}>{item.name}</p>
+      <p className={classes.origin}>{item.origin_name}</p>
       {hoveredIndex === index && <CardHover slideRect={slideRect} detail={item}/>}
     </Carousel.Slide>
   ));
 
   return (
-    <Container size="xl">
+    <Container>
       <h1 className={classes.title}>{name}</h1>
       <Carousel
         slideSize="12.5%"

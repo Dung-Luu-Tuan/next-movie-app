@@ -27,7 +27,6 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  /* padding: 16px 13px 40px 13px; */
 }
 
 .mantine-Carousel-viewport {
@@ -37,4 +36,8 @@ a {
 .mantine-HoverCard-dropdown {
   padding: 0px;
   border: none;
+}
+
+.mantine-Container-root {
+  max-width: 1808px;
 }

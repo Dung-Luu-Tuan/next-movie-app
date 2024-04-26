@@ -15,6 +15,7 @@
   background-color: var(--mantine-color-dark-7);
   padding: 0px 8px;
   box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px 0px;
+  border-radius: 0%;
 }
 
 .name {
@@ -23,10 +24,15 @@
   -webkit-line-clamp: 1;
   overflow: hidden;
   width: 100%;
-  font-size: 16px;
+  font-size: 20px;
   color: var(--mantine-color-white);
   line-height: 24px;
   white-space: break-spaces;
+  margin-top: 12px;
+}
+
+.name:hover {
+  color: var(--mantine-color-green-5);
 }
 
 .category {
@@ -44,11 +50,9 @@
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 5;
-  line-height: 20px;
   width: 100%;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--mantine-color-white);
-  line-height: 20px;
   font-weight: 400;
   white-space: normal;
 }
@@ -58,7 +62,9 @@
 }
 
 .continue {
-  text-align: right;
+  position: absolute;
+  bottom: 5px;
+  right: 10px;
   color: var(--mantine-color-green-5);
-  font-size: 12px;
+  font-size: 14px;
 }

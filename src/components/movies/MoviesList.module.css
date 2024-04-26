@@ -7,13 +7,26 @@
 }
 
 .title {
-  margin-left: 64px;
+  margin-left: 88px;
   margin-bottom: 5px;
 }
 
 .name {
   margin: 0;
+  font-size: 16px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+}
+
+.origin {
+  margin: 0;
   font-size: 14px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
 }
 
 .image {
