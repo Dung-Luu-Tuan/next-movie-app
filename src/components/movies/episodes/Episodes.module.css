@@ -1,0 +1,36 @@
+.container {
+  padding: 24px 0px 0px 0px;
+}
+
+.episodeContainer {
+  width: 24%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.episodeContainer:hover .episodeImage {
+  transform: scale(1.1);
+}
+
+.episodeContainer:hover .episodeName {
+  box-shadow: 0 0 10px rgba(255, 192, 203, 0.5);
+}
+
+.episodeImage {
+  transition: transform 0.3s ease;
+}
+
+.episodeName {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 8px;
+  margin: 0;
+  transition: opacity 0.3s ease;
+  opacity: 1;
+}
