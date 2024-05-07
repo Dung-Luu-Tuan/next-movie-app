@@ -1,5 +1,5 @@
 .container {
-  padding: 24px 0px 0px 0px;
+  padding: 24px 0px;
 }
 
 .episodeContainer {
@@ -9,6 +9,7 @@
   position: relative;
   overflow: hidden;
   cursor: pointer;
+  color: var(--mantine-color-white);
 }
 
 .episodeContainer:hover .episodeImage {

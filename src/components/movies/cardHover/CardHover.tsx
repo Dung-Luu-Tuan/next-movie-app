@@ -57,7 +57,7 @@ const CardHover = ({ slideRect, detail }: any) => {
           top: slideData?.top - 20 || 0,
           left: slideData?.left - 10 || 0,
           width: slideData?.width + 70 || 0,
-          height: slideData?.height + 60 || 0,
+          height: slideData?.height + 80 || 0,
           marginLeft: -25,
           zIndex: 999,
         }}

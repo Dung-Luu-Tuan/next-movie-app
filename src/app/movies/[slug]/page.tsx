@@ -6,7 +6,6 @@ import {
   Text,
   Flex,
   Grid,
-  Center,
   Image,
   AspectRatio,
   Button,
@@ -25,7 +24,6 @@ import Episodes from "@/components/movies/episodes/Episodes";
 const MoviesDetail = ({ params }: any) => {
   const [movieDetail, setMovieDetail] = useState({}) as any;
   const [movieEspisodes, setMovieEspisodes] = useState();
-  console.log("slug", params);
   const movies = moviesStore((state: any) => state.movies);
 
   useEffect(() => {
@@ -33,9 +31,8 @@ const MoviesDetail = ({ params }: any) => {
       (item: any) => item?.data?.movie.slug === params.slug
     );
     if (movie) {
-      console.log("movie", movie.data.movie);
       setMovieDetail(movie.data.movie);
-      setMovieEspisodes(movie.data.episodes);
+      setMovieEspisodes(movie.data.episodes?.[0]?.server_data);
     } else {
       fetch(`https://phimapi.com/phim/${params.slug}`)
         .then((res) => res.json())
@@ -45,8 +42,6 @@ const MoviesDetail = ({ params }: any) => {
         });
     }
   }, []);
-
-  console.log("movieDetail.trailer_url", movieDetail.trailer_url);
 
   return (
     <>
@@ -161,7 +156,7 @@ const MoviesDetail = ({ params }: any) => {
       </Container>
       <Container>
         <Container className={classes.detail}>
-          <Episodes episodes={movieEspisodes} poster={movieDetail?.poster_url} />
+          <Episodes episodes={movieEspisodes} poster={movieDetail?.poster_url} slug={movieDetail.slug}/>
         </Container>
       </Container>
     </>

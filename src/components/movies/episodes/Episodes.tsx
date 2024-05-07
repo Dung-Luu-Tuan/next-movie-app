@@ -1,11 +1,10 @@
 "use client";
 
-import { Container, rem, Flex, AspectRatio, Text, Image } from "@mantine/core";
+import { Container, rem, Flex, Text, Image } from "@mantine/core";
 import classes from './Episodes.module.css'
+import Link from "next/link";
 
-const Episodes = ({ episodes, poster }: any) => {
-    console.log('epi', episodes)
-
+const Episodes = ({ episodes, poster, slug }: any) => {
     return (
         <Container className={classes.container}>
             <Flex
@@ -18,13 +17,12 @@ const Episodes = ({ episodes, poster }: any) => {
             >
                 {episodes?.map((item: any, index: any) => {
                     return (
-                        <Text key={index} className={classes.episodeContainer}>
+                        <Link href={`/play/${slug}-${index+1}`} key={index} className={classes.episodeContainer}>
                             <div className={classes.episodeContent}>
                                 <Image src={poster} h={400} alt="img" className={classes.episodeImage} />
                                 <Text className={classes.episodeName}>{item?.name}</Text>
-                                
                             </div>
-                        </Text>
+                        </Link>
                     )
                 })}
 

@@ -43,3 +43,8 @@ a {
 .mantine-Container-root {
   max-width: 1808px;
 }
+
+.mantine-Grid-inner {
+  width: 100%;
+  margin: 0;
+}
