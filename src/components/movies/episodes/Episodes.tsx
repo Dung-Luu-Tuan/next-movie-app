@@ -17,7 +17,7 @@ const Episodes = ({ episodes, poster, slug }: any) => {
             >
                 {episodes?.map((item: any, index: any) => {
                     return (
-                        <Link href={`/play/${slug}-${index+1}`} key={index} className={classes.episodeContainer}>
+                        <Link href={`/play/${slug}-tap-${index+1}`} key={index} className={classes.episodeContainer}>
                             <div className={classes.episodeContent}>
                                 <Image src={poster} h={400} alt="img" className={classes.episodeImage} />
                                 <Text className={classes.episodeName}>{item?.name}</Text>

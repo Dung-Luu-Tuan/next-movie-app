@@ -20,28 +20,10 @@ import {
   IconPhoto,
 } from "@tabler/icons-react";
 import Episodes from "@/components/movies/episodes/Episodes";
+import useMovieDetails from "@/hooks/useMovieDetails";
 
 const MoviesDetail = ({ params }: any) => {
-  const [movieDetail, setMovieDetail] = useState({}) as any;
-  const [movieEspisodes, setMovieEspisodes] = useState();
-  const movies = moviesStore((state: any) => state.movies);
-
-  useEffect(() => {
-    const movie = movies.find(
-      (item: any) => item?.data?.movie.slug === params.slug
-    );
-    if (movie) {
-      setMovieDetail(movie.data.movie);
-      setMovieEspisodes(movie.data.episodes?.[0]?.server_data);
-    } else {
-      fetch(`https://phimapi.com/phim/${params.slug}`)
-        .then((res) => res.json())
-        .then((data) => {
-          setMovieDetail(data.movie);
-          setMovieEspisodes(data.episodes?.[0]?.server_data);
-        });
-    }
-  }, []);
+  const { movieDetail, movieEpisodes } = useMovieDetails(params);
 
   return (
     <>
@@ -49,22 +31,22 @@ const MoviesDetail = ({ params }: any) => {
         <Container className={classes.detail}>
           <Flex direction="column" justify="flex-start">
             <Text className={classes.name} fw={700}>
-              {movieDetail.name}
+              {movieDetail?.name}
             </Text>
             <Text className={classes.director}>
-              Đạo diễn: {movieDetail.director?.join(", ")}
+              Đạo diễn: {movieDetail?.director?.join(", ")}
             </Text>
             <Text className={classes.origin}>
-              Tên quốc tế: {movieDetail.origin_name}
+              Tên quốc tế: {movieDetail?.origin_name}
             </Text>
             <Text className={classes.time}>
-              {movieDetail.time} {"|"} {movieDetail.episode_current} {"|"}{" "}
-              {movieDetail.year}
+              {movieDetail?.time} {"|"} {movieDetail?.episode_current} {"|"}{" "}
+              {movieDetail?.year}
             </Text>
 
             <Grid className={classes.grid}>
               <Grid.Col span={3} className={classes.poster}>
-                <Image src={movieDetail.poster_url} h={400} alt="img" />
+                <Image src={movieDetail?.poster_url} h={400} alt="img" />
               </Grid.Col>
               <Grid.Col span={7} className={classes.trailer}>
                 <AspectRatio style={{ height: "400px" }}>
@@ -123,7 +105,7 @@ const MoviesDetail = ({ params }: any) => {
               ))}
             </Group>
 
-            <Text className={classes.content}>{movieDetail.content}</Text>
+            <Text className={classes.content}>{movieDetail?.content}</Text>
 
             <Text className={`${classes.actors}`}>
               <Flex direction="row" gap="md">
@@ -156,7 +138,7 @@ const MoviesDetail = ({ params }: any) => {
       </Container>
       <Container>
         <Container className={classes.detail}>
-          <Episodes episodes={movieEspisodes} poster={movieDetail?.poster_url} slug={movieDetail.slug}/>
+          <Episodes episodes={movieEpisodes} poster={movieDetail?.poster_url} slug={movieDetail?.slug}/>
         </Container>
       </Container>
     </>
