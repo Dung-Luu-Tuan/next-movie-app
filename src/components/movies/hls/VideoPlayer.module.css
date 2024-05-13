@@ -1,4 +1,10 @@
 .video {
   width: 100%;
-  height: 540px;
+  height: 100%;
+  outline: none;
+  border: none;
+}
+
+.video:focus {
+  outline: none;
 }
