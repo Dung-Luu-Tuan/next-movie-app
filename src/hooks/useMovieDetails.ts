@@ -1,7 +1,4 @@
-"use-client";
-
 import { moviesStore } from "@/store/movies";
-import { escape } from "querystring";
 import { useEffect, useState } from "react";
 
 const useMovieDetails = (params: { slug: string }) => {
@@ -26,32 +23,34 @@ const useMovieDetails = (params: { slug: string }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const movie = await fetchMovieDetails(slug);
-      if (movie) {
-        setMovieDetail(movie.movie);
-        setMovieEpisodes(movie.episodes?.[0]?.server_data);
+      try {
+        const res = await fetch(`https://phimapi.com/phim/${slug}`);
+        const data = await res.json();
+        setMovieDetail(data.movie);
+        setMovieEpisodes(data.episodes?.[0]?.server_data);
+        addMovies([
+          {
+            data: {
+              episodes: data.episodes,
+              movie: data.movie,
+            },
+          },
+        ]);
+      } catch (error) {
+        console.error("Error fetching movie details:", error);
       }
-
-      fetchData();
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [params.slug]);
 
-  const fetchMovieDetails = async (slug: string) => {
-    const res = await fetch(`https://phimapi.com/phim/${slug}`);
-    const data = await res.json();
-    setMovieDetail(data.movie);
-    setMovieEpisodes(data.episodes?.[0]?.server_data);
-    addMovies([
-      {
-        data: {
-          episodes: data.episodes,
-          movie: data.movie,
-        },
-      },
-    ]);
-    return data;
-  };
+    const movie = movies.find((item: any) => item?.data?.movie.slug === slug);
+    if (movie) {
+      setMovieDetail(movie.data.movie);
+      setMovieEpisodes(movie.data.episodes?.[0]?.server_data);
+    } else {
+      fetchData(); // Fetch data once when component mounts
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [params.slug]); // Add params.slug as a dependency
 
   return { movieDetail, movieEpisodes, slug, episode };
 };

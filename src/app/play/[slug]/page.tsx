@@ -1,11 +1,6 @@
 "use client";
 
-import {
-  Container,
-  Text,
-  Flex,
-  Grid,
-} from "@mantine/core";
+import { Container, Text, Flex, Grid } from "@mantine/core";
 import classes from "./MovieDisplay.module.css";
 import Link from "next/link";
 import VideoPlayer from "@/components/movies/hls/VideoPlayer";
@@ -20,7 +15,7 @@ const MovieDisplay = ({ params }: any) => {
         <Container className={classes.detail}>
           <Grid className={classes.grid}>
             <Grid.Col span={9} className={classes.video}>
-              {movieEpisodes && (
+              {!!movieEpisodes && (
                 <VideoPlayer src={movieEpisodes?.[episode - 1]?.link_embed} />
               )}
             </Grid.Col>
@@ -42,7 +37,9 @@ const MovieDisplay = ({ params }: any) => {
                 >
                   {movieEpisodes?.map((_: any, index: any) => (
                     <Link href={`/play/${slug}-tap-${index + 1}`} key={index}>
-                      <Text className={`${classes.episode} ${index === episode - 1 && classes.selected}`}>
+                      <Text
+                        className={`${classes.episode} ${index === episode - 1 && classes.selected}`}
+                      >
                         {index + 1}
                       </Text>
                     </Link>
