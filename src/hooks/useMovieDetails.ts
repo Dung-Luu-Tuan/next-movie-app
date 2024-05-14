@@ -13,12 +13,16 @@ const useMovieDetails = (params: { slug: string }) => {
   let episode = parts.pop() as any;
   let beforeEpisode = parts.pop();
 
+  slug = params.slug;
+
   if (isNaN(episode)) {
-    slug = params.slug;
     episode = 1;
-  }
-  if (!isNaN(episode) && beforeEpisode === "tap") {
-    slug = params.slug.slice(0, params.slug.lastIndexOf("-") - 4);
+  } else {
+    if (beforeEpisode === "tap") {
+      slug = params.slug.slice(0, params.slug.lastIndexOf("-") - 4);
+    } else {
+      episode = 1;
+    }
   }
 
   useEffect(() => {
@@ -46,11 +50,11 @@ const useMovieDetails = (params: { slug: string }) => {
       setMovieDetail(movie.data.movie);
       setMovieEpisodes(movie.data.episodes?.[0]?.server_data);
     } else {
-      fetchData(); // Fetch data once when component mounts
+      fetchData();
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [params.slug]); // Add params.slug as a dependency
+  }, [params.slug]);
 
   return { movieDetail, movieEpisodes, slug, episode };
 };

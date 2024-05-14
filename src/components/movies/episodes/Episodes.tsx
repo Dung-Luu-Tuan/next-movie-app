@@ -10,7 +10,6 @@ const Episodes = ({ episodes, poster, slug }: any) => {
             <Flex
                 mih={50}
                 gap="xs"
-                justify="center"
                 align="flex-center"
                 direction="row"
                 wrap="wrap"

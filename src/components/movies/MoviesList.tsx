@@ -8,7 +8,7 @@ import classes from "./MoviesList.module.css";
 import CardHover from "./cardHover/CardHover";
 import { useState } from "react";
 
-const MoviesList = ({ name, list }: MoviesListProps) => {
+const MoviesList = ({ name, list, type }: MoviesListProps) => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const [slideRect, setSlideRect] = useState({});
 
@@ -26,7 +26,7 @@ const MoviesList = ({ name, list }: MoviesListProps) => {
   };
   
   const slides = list.map((item: any, index: any) => (
-    <Carousel.Slide key={index} onMouseEnter={() => handleMouseEnter(index)} onMouseLeave={handleMouseLeave} id={`carousel-slide-${index}`}>
+    <Carousel.Slide key={name+index} onMouseEnter={() => handleMouseEnter(index)} onMouseLeave={handleMouseLeave} id={`carousel-slide-${index}`}>
       <Image
         src={"https://img.phimapi.com/" + item.poster_url}
         alt=""

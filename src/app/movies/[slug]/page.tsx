@@ -1,6 +1,5 @@
 "use client";
 
-import { moviesStore } from "@/store/movies";
 import {
   Container,
   Text,
@@ -12,7 +11,6 @@ import {
   Group,
   rem,
 } from "@mantine/core";
-import { useEffect, useState } from "react";
 import classes from "./MovieDetail.module.css";
 import {
   IconSnowflake,
