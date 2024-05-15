@@ -7,6 +7,7 @@ import { moviesStore } from "@/store/movies";
 import Link from "next/link";
 
 const CardHover = ({ slideRect, detail }: any) => {
+  console.log('slideRect', slideRect)
   const [slideData, setSlideData] = useState({ ...slideRect });
   const [movieDetail, setMovieDetail] = useState(detail);
   const movies = moviesStore((state: any) => state.movies);
@@ -41,7 +42,7 @@ const CardHover = ({ slideRect, detail }: any) => {
       document.body.classList.remove("body-portal");
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [slideRect]);
 
   const portalContainer = document.querySelector(".body-portal");
   if (!portalContainer) return null;
