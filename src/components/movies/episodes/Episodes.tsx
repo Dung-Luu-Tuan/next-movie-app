@@ -10,14 +10,13 @@ const Episodes = ({ episodes, poster, slug }: any) => {
             <Flex
                 mih={50}
                 gap="xs"
-                justify="center"
                 align="flex-center"
                 direction="row"
                 wrap="wrap"
             >
                 {episodes?.map((item: any, index: any) => {
                     return (
-                        <Link href={`/play/${slug}-${index+1}`} key={index} className={classes.episodeContainer}>
+                        <Link href={`/play/${slug}-tap-${index+1}`} key={index} className={classes.episodeContainer}>
                             <div className={classes.episodeContent}>
                                 <Image src={poster} h={400} alt="img" className={classes.episodeImage} />
                                 <Text className={classes.episodeName}>{item?.name}</Text>

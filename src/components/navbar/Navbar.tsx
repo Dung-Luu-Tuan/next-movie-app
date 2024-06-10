@@ -5,12 +5,15 @@ import { MantineLogo } from "@mantinex/mantine-logo";
 import classes from "./Navbar.module.css";
 import { IconSearch } from "@tabler/icons-react";
 import Links from "@/components/navbar/links/Links";
+import Link from "next/link";
 
 const Navbar = () => {
   return (
     <header className={classes.header}>
       <Container size="responsive" className={classes.inner}>
-        <MantineLogo size={36} type="mark" />
+        <Link href="/" passHref>
+            <MantineLogo size={36} type="mark" />
+        </Link>
         <Group gap={5} visibleFrom="xs">
           <Links />
         </Group>
