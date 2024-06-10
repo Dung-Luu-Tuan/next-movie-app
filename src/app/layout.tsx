@@ -7,6 +7,7 @@ import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 import "@mantine/carousel/styles.css";
 import Navbar from "@/components/navbar/Navbar";
 import { theme } from "@/static";
+import Footer from "@/components/footer/Footer";
 
 const combinedTheme = {
   fontFamily: "Helvetica Neue, sans-serif",
@@ -29,6 +30,7 @@ export default function RootLayout({
         <MantineProvider theme={combinedTheme}>
           <Navbar />
           {children}
+          <Footer />
         </MantineProvider>
       </body>
     </html>

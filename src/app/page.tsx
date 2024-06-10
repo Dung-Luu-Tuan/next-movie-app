@@ -11,8 +11,8 @@ const Home = () => {
 
   return (
     <>
-      <MoviesList name={name1} list={movieList1} type="phim-bo"/>
       <MoviesList name={name2} list={movieList2} type="phim-le"/>
+      <MoviesList name={name1} list={movieList1} type="phim-bo"/>
       <MoviesList name={name3} list={movieList3} type="hoat-hinh"/>
       <MoviesList name={name4} list={movieList4} type="tv-shows"/>
     </>
