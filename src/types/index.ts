@@ -9,6 +9,6 @@ export interface VideoPlayerProps {
 }
 
 export interface MoviePageProps {
-  movieDetail: any; // Thay any bằng loại dữ liệu phù hợp cho movieDetail
-  movieEpisodes: any; // Thay any bằng loại dữ liệu phù hợp cho movieEpisodes
+  movieDetail: any;
+  movieEpisodes: any;
 }

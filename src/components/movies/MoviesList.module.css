@@ -6,6 +6,10 @@
   }
 }
 
+.content {
+  min-height: 330px;
+}
+
 .title {
   margin-left: 88px;
   margin-bottom: 5px;
