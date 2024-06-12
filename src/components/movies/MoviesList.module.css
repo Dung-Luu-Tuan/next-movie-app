@@ -10,8 +10,14 @@
   min-height: 330px;
 }
 
+.block {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
 .title {
-  margin-left: 88px;
+  width: 90%;
   margin-bottom: 5px;
 }
 
