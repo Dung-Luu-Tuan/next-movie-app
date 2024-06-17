@@ -30,6 +30,8 @@ const useMovieDetails = async (params: {
     return {
       movieDetail: movie.data.movie,
       movieEpisodes: movie.data.episodes?.[0]?.server_data,
+      slug,
+      episode,
     };
   } else {
     try {
@@ -46,10 +48,12 @@ const useMovieDetails = async (params: {
       return {
         movieDetail: data.movie,
         movieEpisodes: data.episodes?.[0]?.server_data,
+        slug,
+        episode,
       };
     } catch (error) {
       console.error("Error fetching movie details:", error);
-      return { movieDetail: null, movieEpisodes: null };
+      return { movieDetail: null, movieEpisodes: null, slug, episode };
     }
   }
 };

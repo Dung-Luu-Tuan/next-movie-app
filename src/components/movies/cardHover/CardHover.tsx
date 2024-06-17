@@ -7,7 +7,6 @@ import { moviesStore } from "@/store/movies";
 import Link from "next/link";
 
 const CardHover = ({ slideRect, detail }: any) => {
-  console.log('slideRect', slideRect)
   const [slideData, setSlideData] = useState({ ...slideRect });
   const [movieDetail, setMovieDetail] = useState(detail);
   const movies = moviesStore((state: any) => state.movies);

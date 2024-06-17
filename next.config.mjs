@@ -1,7 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["img.phimapi.com"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "img.phimapi.com",
+        port: "",
+        pathname: "/**",
+      },
+    ],
   },
   experimental: {
     optimizePackageImports: ["@mantine/core", "@mantine/hooks"],

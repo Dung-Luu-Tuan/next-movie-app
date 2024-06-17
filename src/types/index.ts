@@ -21,4 +21,6 @@ export interface MovieState {
 export interface MovieDetails {
   movieDetail: any;
   movieEpisodes: any;
+  slug: string;
+  episode: string;
 }
