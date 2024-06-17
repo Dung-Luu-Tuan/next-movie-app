@@ -44,3 +44,7 @@
     color: var(--mantine-color-white);
   }
 }
+
+.logo {
+  margin-top: 10px;
+}

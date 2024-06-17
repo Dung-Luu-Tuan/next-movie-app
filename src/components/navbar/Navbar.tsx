@@ -6,13 +6,20 @@ import classes from "./Navbar.module.css";
 import { IconSearch } from "@tabler/icons-react";
 import Links from "@/components/navbar/links/Links";
 import Link from "next/link";
+import Image from "next/image";
+import Logo from "../../app/favicon.ico"
 
 const Navbar = () => {
   return (
     <header className={classes.header}>
       <Container size="responsive" className={classes.inner}>
-        <Link href="/" passHref>
-            <MantineLogo size={36} type="mark" />
+        <Link href="/" passHref className={classes.logo}>
+          <Image
+            src={Logo}
+            width={80}
+            height={80}
+            alt=""
+          />
         </Link>
         <Group gap={5} visibleFrom="xs">
           <Links />
