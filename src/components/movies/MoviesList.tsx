@@ -1,3 +1,5 @@
+"use client"
+
 import { MoviesListProps } from "@/types";
 import { Carousel } from "@mantine/carousel";
 import { Center, Container, Loader, rem } from "@mantine/core";

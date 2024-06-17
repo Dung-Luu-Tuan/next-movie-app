@@ -1,21 +1,28 @@
-"use client";
-
 import MoviesList from "@/components/movies/MoviesList";
-import useMovieList from "@/hooks/useMovieList";
-import { MovieCategory, MovieCategoryDisplayName } from "../types/enums"
+import { MovieCategory, MovieCategoryDisplayName, MovieTypesArray } from "@/types/enums";
 
-const Home = () => {
-  const { movieList: movieList1 } = useMovieList(MovieCategory.Series);
-  const { movieList: movieList2 } = useMovieList(MovieCategory.Movie);
-  const { movieList: movieList3 } = useMovieList(MovieCategory.Animation);
-  const { movieList: movieList4 } = useMovieList(MovieCategory.TVShow);
+const Home = async () => {
+  const fetchMovieList = async (type: string) => {
+    const res = await fetch(
+      `https://phimapi.com/v1/api/danh-sach/${type}?limit=32`
+    );
+    const data = await res.json();
+    return { type, movies: data?.data?.items || [] };
+  };
+
+  const fetchRequests = MovieTypesArray.map(type => fetchMovieList(type));
+  const movieLists = await Promise.all(fetchRequests);
 
   return (
     <>
-      <MoviesList name={MovieCategoryDisplayName[MovieCategory.Series]} list={movieList2} type={MovieCategory.Series}/>
-      <MoviesList name={MovieCategoryDisplayName[MovieCategory.Movie]} list={movieList1} type={MovieCategory.Movie}/>
-      <MoviesList name={MovieCategoryDisplayName[MovieCategory.Animation]} list={movieList3} type={MovieCategory.Animation}/>
-      <MoviesList name={MovieCategoryDisplayName[MovieCategory.TVShow]} list={movieList4} type={MovieCategory.TVShow}/>
+      {movieLists.map((item, index) => (
+        <MoviesList
+          key={index}
+          name={MovieCategoryDisplayName[item.type as MovieCategory]}
+          list={item.movies}
+          type={item.type as MovieCategory}
+        />
+      ))}
     </>
   );
 };

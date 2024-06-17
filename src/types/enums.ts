@@ -11,3 +11,8 @@ export const MovieCategoryDisplayName: Record<MovieCategory, string> = {
   [MovieCategory.Animation]: "Hoạt hình",
   [MovieCategory.TVShow]: "TV Shows",
 };
+
+type MovieTypes = (typeof MovieCategory)[keyof typeof MovieCategory];
+
+// Convert thành một mảng các giá trị
+export const MovieTypesArray: MovieTypes[] = Object.values(MovieCategory);

@@ -12,3 +12,8 @@ export interface MoviePageProps {
   movieDetail: any;
   movieEpisodes: any;
 }
+
+export interface MovieState {
+  movies: any[];
+  addMovies: (movies: any[]) => void;
+}
