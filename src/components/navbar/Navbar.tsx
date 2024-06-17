@@ -7,7 +7,7 @@ import { IconSearch } from "@tabler/icons-react";
 import Links from "@/components/navbar/links/Links";
 import Link from "next/link";
 import Image from "next/image";
-import Logo from "../../app/favicon.ico"
+import Logo from "../../app/icon.ico"
 
 const Navbar = () => {
   return (
