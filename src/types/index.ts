@@ -17,3 +17,8 @@ export interface MovieState {
   movies: any[];
   addMovies: (movies: any[]) => void;
 }
+
+export interface MovieDetails {
+  movieDetail: any;
+  movieEpisodes: any;
+}

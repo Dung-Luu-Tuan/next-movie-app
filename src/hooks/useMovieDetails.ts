@@ -1,11 +1,13 @@
 import { moviesStore } from "@/store/movies";
+import { MovieDetails } from "@/types";
 
-const useMovieDetails = async (params: { slug: string }) => {
+const useMovieDetails = async (params: {
+  slug: string;
+}): Promise<MovieDetails> => {
   const movies = moviesStore.getState().movies;
   const addMovies = moviesStore.getState().addMovies;
 
   let slug = params.slug;
-  console.log("params55", slug);
 
   let parts = params.slug.split("-");
   let episode = parts.pop() as any;
@@ -33,7 +35,6 @@ const useMovieDetails = async (params: { slug: string }) => {
     try {
       const res = await fetch(`https://phimapi.com/phim/${slug}`);
       const data = await res.json();
-      console.log("kakaka", data);
       addMovies([
         {
           data: {
@@ -48,7 +49,7 @@ const useMovieDetails = async (params: { slug: string }) => {
       };
     } catch (error) {
       console.error("Error fetching movie details:", error);
-      return { movieDetail: null, movieEpisodes: null, slug, episode };
+      return { movieDetail: null, movieEpisodes: null };
     }
   }
 };
