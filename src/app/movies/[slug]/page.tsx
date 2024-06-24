@@ -6,7 +6,7 @@ const MoviesDetailPage = async ({ params }: any) => {
   const { movieDetail, movieEpisodes } = await useMovieDetails({ slug });
 
   return (
-    <MoviesDetail movieDetail={movieDetail} movieEpisodes={movieEpisodes} />
+    <MoviesDetail movieDetail={movieDetail} movieEpisodes={movieEpisodes} episode={1} />
   );
 };
 

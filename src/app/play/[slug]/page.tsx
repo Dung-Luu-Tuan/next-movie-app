@@ -1,17 +1,19 @@
+import MoviePlayer from "@/components/movies/play/MoviePlayer";
 import useMovieDetails from "@/hooks/useMovieDetails";
-import MoviePlayer from "@/components/movies/moviePlayer/MoviePlayer";
 
 const MovieDisplay = async ({ params }: any) => {
   const { slug } = params as { slug: string };
-  const { movieDetail, movieEpisodes, episode } = await useMovieDetails({
+  const { movieDetail, movieEpisodes, episode, newSlug } = await useMovieDetails({
     slug,
   });
+
+  console.log('slug123', newSlug)
 
   return (
     <MoviePlayer
       movieDetail={movieDetail}
       movieEpisodes={movieEpisodes}
-      slug={slug}
+      slug={newSlug}
       episode={episode}
     />
   );

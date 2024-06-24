@@ -1,19 +1,14 @@
 import { moviesStore } from "@/store/movies";
-import { MovieDetails } from "@/types";
+import { MovieDetail, VideoData } from "@/types";
 
-const useMovieDetails = async (params: {
-  slug: string;
-}): Promise<MovieDetails> => {
+const useMovieDetails = async (params: { slug: string }) => {
   const movies = moviesStore.getState().movies;
   const addMovies = moviesStore.getState().addMovies;
 
   let slug = params.slug;
-
   let parts = params.slug.split("-");
   let episode = parts.pop() as any;
   let beforeEpisode = parts.pop();
-
-  slug = params.slug;
 
   if (isNaN(episode)) {
     episode = 1;
@@ -24,14 +19,13 @@ const useMovieDetails = async (params: {
       episode = 1;
     }
   }
+  let newSlug = slug;
 
   const movie = movies.find((item: any) => item?.data?.movie.slug === slug);
   if (movie) {
     return {
-      movieDetail: movie.data.movie,
-      movieEpisodes: movie.data.episodes?.[0]?.server_data,
-      slug,
-      episode,
+      movieDetail: movie.data.movie as MovieDetail,
+      movieEpisodes: movie.data.episodes?.[0]?.server_data as VideoData[],
     };
   } else {
     try {
@@ -45,15 +39,16 @@ const useMovieDetails = async (params: {
           },
         },
       ]);
+      console.log("newSlug", newSlug);
       return {
-        movieDetail: data.movie,
-        movieEpisodes: data.episodes?.[0]?.server_data,
-        slug,
+        movieDetail: data.movie as MovieDetail,
+        movieEpisodes: data.episodes?.[0]?.server_data as VideoData[],
+        newSlug,
         episode,
       };
     } catch (error) {
       console.error("Error fetching movie details:", error);
-      return { movieDetail: null, movieEpisodes: null, slug, episode };
+      return { movieDetail: null, movieEpisodes: null, newSlug, episode };
     }
   }
 };
