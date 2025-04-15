@@ -1,25 +1,19 @@
-"use client";
-import { useState } from "react";
-import { Container, Group, Button, Autocomplete, rem } from "@mantine/core";
-import { MantineLogo } from "@mantinex/mantine-logo";
-import classes from "./Navbar.module.css";
-import { IconSearch } from "@tabler/icons-react";
-import Links from "@/components/navbar/links/Links";
-import Link from "next/link";
-import Image from "next/image";
-import Logo from "../../app/icon.ico"
+'use client';
+
+import Links from '@/components/navbar/links/Links';
+import { Autocomplete, Button, Container, Group, rem } from '@mantine/core';
+import { IconSearch } from '@tabler/icons-react';
+import Image from 'next/image';
+import Link from 'next/link';
+import Logo from '../../app/icon.ico';
+import classes from './Navbar.module.css';
 
 const Navbar = () => {
   return (
     <header className={classes.header}>
       <Container size="responsive" className={classes.inner}>
         <Link href="/" passHref className={classes.logo}>
-          <Image
-            src={Logo}
-            width={80}
-            height={80}
-            alt=""
-          />
+          <Image src={Logo} width={80} height={80} alt="" />
         </Link>
         <Group gap={5} visibleFrom="xs">
           <Links />
@@ -34,13 +28,13 @@ const Navbar = () => {
             />
           }
           data={[
-            "React",
-            "Angular",
-            "Vue",
-            "Next.js",
-            "Riot.js",
-            "Svelte",
-            "Blitz.js",
+            'React',
+            'Angular',
+            'Vue',
+            'Next.js',
+            'Riot.js',
+            'Svelte',
+            'Blitz.js',
           ]}
           visibleFrom="xs"
         />
